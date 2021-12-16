@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Player Movement Data
   m_EditorClassIdentifier: 
   _bodyLength: 1.904217
-  _minRootToEnd: 0.6
+  _minRootToEnd: 0.8
   _dragLength: 6
   _jumpHeight: 5

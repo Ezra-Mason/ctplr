@@ -103,6 +103,10 @@ public class CtplrIK : MonoBehaviour
         }
         else
         {
+            for (int i = 0; i < _positions.Length-1; i++)
+            {
+                _positions[i + 1] = Vector3.Lerp(_positions[i + 1], _positions[i] + rootRotDiff * _initialDirection[i], 5f);
+            }
             for (int i = 0; i < _iterations; i++)
             {
                 //backwards pass
@@ -141,7 +145,7 @@ public class CtplrIK : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < _bones.Length; i++)
+        for (int i = 0; i <= _bones.Length -1; i++)
         {
 
             if (i == _positions.Length - 1)
@@ -150,8 +154,9 @@ public class CtplrIK : MonoBehaviour
             }
             else
             {
-                _bones[i].rotation = Quaternion.FromToRotation(_initialDirection[i], _positions[i + 1] - _positions[i]) * _initalRots[i];
-
+                Vector3 dir = (_positions[i + 1] - _positions[i]).normalized;
+                //_bones[i].rotation = Quaternion.FromToRotation(_bones[i].InverseTransformDirection(_bones[i].up).normalized, (_positions[i + 1] - _positions[i]).normalized);
+                _bones[i].rotation = Quaternion.LookRotation(dir) * _initalRots[i];
             }
             _bones[i].position = _positions[i];
 

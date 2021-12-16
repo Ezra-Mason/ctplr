@@ -68,6 +68,12 @@ public class SlgMovement : MonoBehaviour
                 Vector3 clampedPos = (_mousePos - _root.position).normalized * _bodyLength + _root.position;
                 _target.position = clampedPos;
             }
+            else if ((_mousePos - _root.position).sqrMagnitude <= _exitLength * _exitLength)
+            {
+                Vector3 clampedPos = (_mousePos - _root.position).normalized * _exitLength + _root.position;
+                _target.position = clampedPos;
+            }
+
             else
             {
                 _target.position = _mousePos;
